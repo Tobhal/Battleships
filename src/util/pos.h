@@ -12,6 +12,18 @@ struct Pos {
     bool operator==(const Pos& op) const {
         return (x == op.x && y == op.y);
     }
+
+    Pos operator+(const Pos& op) const {
+        return Pos(x + op.x, y + op.y);
+    }
+
+    Pos operator*(const Pos& op) const {
+        return Pos(x * op.x, y * op.y);
+    }
+
+    Pos operator*(const int& i) const {
+        return Pos(x * i, y * i);
+    }
 };
 
 #endif

@@ -28,6 +28,7 @@ class Player {
         std::map<std::string, std::vector<Pos>> enemyHits;
 
         Player();
+        Player(std::string n);
         Player(std::string n, LobbyOption* o);
 
         // Place

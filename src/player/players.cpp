@@ -5,6 +5,11 @@
 #include "../lobby/options.h"
 
 Player::Player() {}
+
+Player::Player(std::string n) {
+    name = n;
+}
+
 Player::Player(std::string n, LobbyOption* o) {
     name = n;
     options = o;
