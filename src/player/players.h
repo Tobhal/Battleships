@@ -1,0 +1,8 @@
+#ifndef BATTLESHIPS_PLAYER
+#define BATTLESHIPS_PLAYER
+
+
+
+
+
+#endif
