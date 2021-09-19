@@ -1,9 +1,16 @@
 #include <iostream>
 
-#include "util/direction.h"
+#include "player/players.h"
+#include "lobby/options.h"
 
 int main() {
     // Add players
+    LobbyOption option;
+
+    Player p1("Player 1", &option);
+    Player p2("Player 2", &option);
+
+
 
     // Add players to other players attack board
 
@@ -12,12 +19,6 @@ int main() {
     // Players attack
 
     // End game
-
-    Direction dir(LEFT_UP);
-
-    std::cout << dir << std::endl;
-    dir.flitDirection();
-    std::cout << dir.toBits() << std::endl;
 
 
     return 0;

@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "util/boat.h"
-#include "util/direction.h"
+#include "../util/boat.h"
+#include "../util/direction.h"
 
 struct LobbyOption {
     int boardX,boardY;
@@ -25,7 +25,15 @@ struct LobbyOption {
         LEFT_UP,
         LEFT_DOWN
     };
-}
+
+    int totalHits;
+
+    LobbyOption() {
+        for (const auto& b : boats) {
+            totalHits += b;
+        }
+    }
+};
 
 
 #endif
