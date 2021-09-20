@@ -1,6 +1,7 @@
 #ifndef BATTLESHIPS_POS
 #define BATTLESHIPS_POS
 
+#include <string>
 /*
     Replace with better vec2
 */

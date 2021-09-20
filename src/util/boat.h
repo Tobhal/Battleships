@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <string>
 
 #include "direction.h"
 #include "pos.h"
@@ -37,19 +38,26 @@ struct Boat {
             if (!(std::find(placesDamage.begin(), placesDamage.end(), pos) != placesDamage.end())) {
                 placesDamage.push_back(pos);
             }
-
             if (placesDamage.size() == placesDamage.size()) {
                 isDestroyed = true;
             }
-
             return true;
         }
-
         return false;
     }
 
-    
-        
+    std::string getPos() {
+        std::string retString;
+
+        for (const auto& position : placesTaken) {
+            retString += position.x;
+            retString += "-";
+            retString += position.y;
+            retString += "|";
+        }
+
+        return retString;
+    }
 };
 
 #endif

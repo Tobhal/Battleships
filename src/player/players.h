@@ -43,7 +43,8 @@ class Player {
         bool hitBoat(Pos pos);
         bool canShoot(Pos pos, Player* player);
 
-        
+        // Print
+        std::string boatsToString();
 };
 
 #endif

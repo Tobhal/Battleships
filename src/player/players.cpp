@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 #include "players.h"
 #include "../lobby/options.h"
@@ -19,8 +20,11 @@ Player::Player(std::string n, LobbyOption* o) {
 
 // Place
 bool Player::canPlaceBoat(Pos pos, BoatType type, Direction direction) {
-    if (!boatIsInsideBoard(pos, type, direction))
+    if (!boatIsInsideBoard(pos, type, direction)) {
+        std::cout << "boat is outside" << std::endl;
+
         return false;
+    }
     
     std::vector<Pos> tmpPos;
 
@@ -42,6 +46,8 @@ bool Player::canPlaceBoat(Pos pos, BoatType type, Direction direction) {
 
 bool Player::placeBoat(Pos pos, BoatType type, Direction direction) {
     if (canPlaceBoat(pos, type, direction)) {
+        std::cout << "can place boat" << std::endl;
+
         boats.push_back(Boat(pos, type, direction));
         boatsAlive++;
         return true;
@@ -51,13 +57,18 @@ bool Player::placeBoat(Pos pos, BoatType type, Direction direction) {
 }
 
 bool Player::boatIsInsideBoard(Pos pos, BoatType type, Direction direction) {
-    if (pos <= 0 || pos > options->boardSize)
+    if (pos > 0 || pos < options->boardSize) {
+        std::cout << options->boardSize << std::endl;
+        std::cout << "1\n" << (pos >= 0) << "|" << (pos < options->boardSize) << std::endl;
         return false;
-    
+    }
+
     pos += (direction.getPos() * type);
 
-    if (pos <= 0 && pos > options->boardSize)
+    if (pos > 0 && pos < options->boardSize) {
+        std::cout << "2" << std::endl;
         return false;
+    }
 
     return true;
 }
@@ -83,4 +94,17 @@ bool Player::hitBoat(Pos pos) {
 
 bool Player::canShoot(Pos pos, Player* player) {
     return true;
+}
+
+// Print
+std::string Player::boatsToString() {
+    std::string retString;
+
+    std::cout << boats.size() << std::endl;
+
+    for (auto& boat : boats) {
+        // retString += boat.getPos() + "; ";
+    }
+
+    return retString;
 }

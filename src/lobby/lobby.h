@@ -23,6 +23,7 @@ class Lobby {
         void addPlayer(Player player);
 
         Player* getPlayer(const char* playerName);
+
 };
 
 #endif
