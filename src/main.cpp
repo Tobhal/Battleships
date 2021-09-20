@@ -5,10 +5,14 @@
 #include "lobby/lobby.h"
 
 int main() {
-    // Add players
+    Pos p(1, 1);
 
+    p *= Pos(1,-1);
+
+    std::cout << p.x << " - " << p.y << std::endl;
     
-
+    
+    // Add players
 
     Lobby game1("Lobby 1");
 

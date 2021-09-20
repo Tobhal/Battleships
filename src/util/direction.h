@@ -2,6 +2,9 @@
 #define BATTLESHIPS_DIRECTION
 
 #include <bitset>
+#include <map>
+
+#include "pos.h"
 
 /*
     first set (of 4 bist) is left or right
@@ -28,6 +31,15 @@ enum Dir {
 struct Direction {
     int direction;
 
+    std::map<int, Pos> intToPos {
+        {16, Pos(1, 0)},
+        {17, Pos(1, 1)},
+        {18, Pos(1, -1)},
+        {32, Pos(-1, 0)},
+        {33, Pos(-1, 1)},
+        {34, Pos(-1, -1)}
+    };
+
     Direction(Dir dir = RIGHT) {
         direction = dir;
     }
@@ -39,6 +51,10 @@ struct Direction {
     void flitDirection() {
         direction ^= 1UL << 4;
         direction ^= 1UL << 5;
+    }
+
+    Pos getPos() {
+        return intToPos[direction];
     }
 
     std::bitset<8> toBits() {

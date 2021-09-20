@@ -5,9 +5,10 @@
 
 #include "../util/boat.h"
 #include "../util/direction.h"
+#include "../util/pos.h"
 
 struct LobbyOption {
-    int boardX,boardY;
+    Pos boardSize;
 
     std::vector<BoatType> boats {
         CARRIER,
@@ -32,6 +33,16 @@ struct LobbyOption {
         for (const auto& b : boats) {
             totalHits += b;
         }
+
+        boardSize = 10;
+    }
+
+    LobbyOption(int size) {
+        for (const auto& b : boats) {
+            totalHits += b;
+        }
+
+        boardSize += size;
     }
 };
 

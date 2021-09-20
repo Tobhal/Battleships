@@ -2,6 +2,7 @@
 #define BATTELSHIPS_BOAT
 
 #include <vector>
+#include <algorithm>
 
 #include "direction.h"
 #include "pos.h"
@@ -15,22 +16,39 @@ enum BoatType {
 };
 
 struct Boat {
-    Pos pos;
     BoatType type;
-    Direction direction;
     bool isDestroyed = false;
     std::vector<Pos> placesTaken;
     std::vector<Pos> placesDamage;
 
     Boat(Pos p, BoatType b, Direction d) {
-        pos = p;
         type = b;
-        direction = d;
 
         for (int i = 0; i < type; i++) {
-            
+            placesTaken.push_back(Pos(p) + (d * i));
         }
+
+        placesTaken.resize(b);
+        placesDamage.resize(b);
     }
+
+    bool addDamage(Pos pos) {
+        if (std::find(placesTaken.begin(), placesTaken.end(), pos) != placesTaken.end()) {
+            if (!(std::find(placesDamage.begin(), placesDamage.end(), pos) != placesDamage.end())) {
+                placesDamage.push_back(pos);
+            }
+
+            if (placesDamage.size() == placesDamage.size()) {
+                isDestroyed = true;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    
         
 };
 
